@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Floating Shapes */
+.shapes::before,
+.shapes::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out alternate;
+}
+
+.shapes::before {
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    top: 10%;
+    left: 15%;
+}
+
+.shapes::after {
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    bottom: 10%;
+    right: 10%;
+}
+
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(30px); }
+}
+
+/* Glass Card */
+.login-card {
+    width: 350px;
+    padding: 40px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+.login-card h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Inputs */
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.input-box input:focus {
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px #00f2fe;
+}
+
+.input-box label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    color: white;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    background: #243b55;
+    padding: 0 5px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00f2fe;
+}
