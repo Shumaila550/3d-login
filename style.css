@@ -13,72 +13,118 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-.login-container {
+.container {
+    position: relative;
     width: 350px;
-    padding: 40px;
+    height: 300px;
+}
+
+/* LOGIN BOX */
+
+.login-box {
+    position: absolute;
+    width: 100%;
+    padding: 30px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     transition: 0.5s;
 }
 
-.login-container.success {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px #00c853;
+.login-box.fade-out {
+    opacity: 0;
+    transform: scale(0.8);
 }
 
-h2 {
+.login-box h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.input-box {
-    position: relative;
-    margin-bottom: 25px;
+.login-box input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
 
-.input-box input {
+.login-box button {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-}
-
-.input-box label {
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    background: white;
-    padding: 0 5px;
-    font-size: 12px;
-    color: #555;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
     border: none;
+    border-radius: 25px;
     background: #667eea;
     color: white;
-    font-size: 16px;
-    border-radius: 25px;
     cursor: pointer;
-    transition: 0.3s;
+    position: relative;
 }
 
-button.loading {
-    background: #999;
-    pointer-events: none;
+/* LOADING SPINNER */
+
+.login-box button.loading::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: spin 1s linear infinite;
 }
 
-button:hover {
-    background: #5a67d8;
+@keyframes spin {
+    100% { transform: translateY(-50%) rotate(360deg); }
 }
 
-#message {
+/* SUCCESS BOX */
+
+.success-box {
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     text-align: center;
-    margin-top: 15px;
-    font-weight: bold;
-    color: green;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: 0.5s;
+}
+
+.success-box.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* CHECKMARK ANIMATION */
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid #00c853;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    border-right: 4px solid #00c853;
+    border-bottom: 4px solid #00c853;
+    top: 15px;
+    left: 25px;
+    transform: rotate(45deg);
+    animation: draw 0.5s ease forwards;
+}
+
+@keyframes draw {
+    from { height: 0; width: 0; }
+    to { height: 40px; width: 20px; }
 }
