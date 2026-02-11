@@ -1,7 +1,5 @@
 const form = document.getElementById("loginForm");
-const button = document.getElementById("loginBtn");
-const loginBox = document.getElementById("loginBox");
-const successBox = document.getElementById("successBox");
+const message = document.getElementById("message");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -11,24 +9,27 @@ form.addEventListener("submit", function(e) {
 
     if (username === "admin" && password === "1234") {
 
-        button.classList.add("loading");
-        button.textContent = "Logging in";
+        message.style.color = "#00c853";
+        message.textContent = "Login Successful ✓";
 
-        setTimeout(() => {
-            loginBox.classList.add("fade-out");
-
-            setTimeout(() => {
-                successBox.classList.add("show");
-            }, 500);
-
-        }, 1500);
+        form.classList.remove("error");
+        form.classList.add("success");
 
         // Optional redirect
         // setTimeout(() => {
         //     window.location.href = "calculator.html";
-        // }, 3000);
+        // }, 2000);
 
     } else {
-        alert("Invalid credentials");
+
+        message.style.color = "red";
+        message.textContent = "Invalid Credentials";
+
+        form.classList.remove("success");
+        form.classList.add("error");
+
+        setTimeout(() => {
+            form.classList.remove("error");
+        }, 300);
     }
 });
