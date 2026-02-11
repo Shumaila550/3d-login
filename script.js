@@ -1,7 +1,7 @@
 const form = document.getElementById("loginForm");
 const button = document.getElementById("loginBtn");
-const container = document.querySelector(".login-container");
-const message = document.getElementById("message");
+const loginBox = document.getElementById("loginBox");
+const successBox = document.getElementById("successBox");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -9,27 +9,26 @@ form.addEventListener("submit", function(e) {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Simple demo login
     if (username === "admin" && password === "1234") {
 
-        // Loading effect
-        button.textContent = "Logging in...";
         button.classList.add("loading");
+        button.textContent = "Logging in";
 
         setTimeout(() => {
-            container.classList.add("success");
-            message.textContent = "Login Successful ✓";
+            loginBox.classList.add("fade-out");
 
-            button.textContent = "Success";
-            button.style.background = "#00c853";
-
-            // Redirect example
-            // window.location.href = "calculator.html";
+            setTimeout(() => {
+                successBox.classList.add("show");
+            }, 500);
 
         }, 1500);
 
+        // Optional redirect
+        // setTimeout(() => {
+        //     window.location.href = "calculator.html";
+        // }, 3000);
+
     } else {
-        message.style.color = "red";
-        message.textContent = "Invalid Username or Password!";
+        alert("Invalid credentials");
     }
 });
